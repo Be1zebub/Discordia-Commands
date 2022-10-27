@@ -44,7 +44,7 @@ end)
 
 commands:New("help", "commands")
 :SetDescription("Shows a commands list")
-:SetCooldown(30, 2) -- allow 2 calls in 30 seconds
+:SetCooldown(30, 2, true) -- allow 2 calls in 30 seconds
 :SetCallback(function(msg, args)
 	local cmdName = args[1]
 
