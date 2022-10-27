@@ -1,5 +1,5 @@
 -- from incredible-gmod.ru with <3
--- rate-limiter
+-- https://github.com/Be1zebub/Ratelimit.lua
 
 --[[ usage example:
 local rateLimit = require("ratelimit")
