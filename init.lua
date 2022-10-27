@@ -253,7 +253,7 @@ return setmetatable({
 		end
 
 		if cmd.cooldown then
-			local cooldown, left = cooldown(msg.author.id)
+			local cooldown, left = cmd.cooldown(msg.author.id)
 			if cooldown then
 				msg:addReaction("🕖")
 				numberReacts(msg, left)
