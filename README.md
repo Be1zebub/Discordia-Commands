@@ -8,7 +8,7 @@ A commands library for the [Discordia](https://github.com/SinisterRectus/Discord
 2. Run `apt install git && git clone git@github.com:Be1zebub/Discordia-Commands.git deps/discordia-commands`
 3. Have fun ;)
 
-## Example
+## Examples
 
 ```lua
 local commands = require("discordia-commands")
@@ -20,9 +20,31 @@ commands:New("ping")
 	new:setContent("Pong! `".. math.abs(math.Round((new.createdAt - msg.createdAt) * 1000)) .." ms`")
 end)
 
+commands:New("say")
+:SetCustomcheck(function(msg)
+	return msg.author == msg.client.owner -- is bot owner
+end)
+:SetCallback(function(msg, args)
+	msg:reply(table.concat(args, " "))
+	msg:delete()
+end)
+
+commands:New("clear", "clean")
+:SetGuildOnly(true)
+:SetPermissions("administrator")
+:SetCooldown(60 * 60, 3) -- allow 3 calls in hour
+:SetCallback(function(msg, args)
+	local count = tonumber(args[1])
+	if count == nil or count < 1 or count > 100 then
+		return msg:reply("Out of range! Count should be 1-100.")
+	end
+
+	msg.channel:bulkDelete(msg.channel:getMessages(count))
+end)
+
 commands:New("help", "commands")
 :SetDescription("Shows a commands list")
-:SetCooldown(30, 1)
+:SetCooldown(30, 2) -- allow 2 calls in 30 seconds
 :SetCallback(function(msg, args)
 	local cmdName = args[1]
 

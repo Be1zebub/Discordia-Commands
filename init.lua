@@ -245,7 +245,7 @@ return setmetatable({
 			if msg.member == nil then return false end -- permissions in dm? bruh, its guild only feature
 
 			for _, permission in ipairs(cmd.permissions) do
-				if msg.member:hasPermission(permission) == false then
+				if msg.member:hasPermission(msg.channel, permission) == false then
 					msg:reply("You dont have permissions to run this command!")
 					return false
 				end
