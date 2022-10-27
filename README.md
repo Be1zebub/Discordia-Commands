@@ -76,3 +76,6 @@ local client = require("discordia").Client()
 client:on("messageCreate", commands) -- listen for new commands
 client:run("Bot YourTokenHere")
 ```
+
+Join to our developrs community [incredible-gmod.ru](https://discord.incredible-gmod.ru)
+[![thumb](https://i.imgur.com/LYGqTnx.png)](https://discord.incredible-gmod.ru)
