@@ -163,7 +163,7 @@ return setmetatable({
 		return Command(name, desc)
 	end,
 	Example = function()
-		Command("help", "commands")
+		Command("/help", "/commands")
 		:SetDescription("Shows a commands list")
 		:SetCooldown(30, 1)
 		:SetCallback(function(msg, args)
@@ -214,7 +214,7 @@ return setmetatable({
 			end
 		end)
 
-		Command("ping")
+		Command("/ping")
 		:SetDescription("Replies pong!")
 		:SetCallback(function(msg)
 			local new = msg:reply("Pong!")
@@ -222,11 +222,11 @@ return setmetatable({
 		end)
 	end
 }, {
-	__call = function(_, prefix, msg)
+	__call = function(_, msg)
 		if msg.author.bot then return end
 
 		local args = stringSplit(msg.content, " ")
-		local command = prefix .. table.remove(args, 1)
+		local command = table.remove(args, 1)
 
 		local cmd = CommandsMap[command] or Aliases[command]
 		if (cmd and cmd.callback) == nil then return end
