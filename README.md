@@ -13,14 +13,14 @@ A commands library for the [Discordia](https://github.com/SinisterRectus/Discord
 ```lua
 local commands = require("discordia-commands")
 
-commands:New("ping")
+commands:New("/ping")
 :SetDescription("Replies pong!")
 :SetCallback(function(msg)
 	local new = msg:reply("Pong!")
 	new:setContent("Pong! `".. math.abs(math.Round((new.createdAt - msg.createdAt) * 1000)) .." ms`")
 end)
 
-commands:New("say")
+commands:New("/say")
 :SetCustomcheck(function(msg)
 	return msg.author == msg.client.owner -- is bot owner
 end)
@@ -29,7 +29,7 @@ end)
 	msg:delete()
 end)
 
-commands:New("clear", "clean")
+commands:New("/clear", "/clean")
 :SetGuildOnly(true)
 :SetPermissions("administrator")
 :SetCooldown(60 * 60, 3) -- allow 3 calls in hour
@@ -42,7 +42,7 @@ commands:New("clear", "clean")
 	msg.channel:bulkDelete(msg.channel:getMessages(count))
 end)
 
-commands:New("help", "commands")
+commands:New("/help", "/commands")
 :SetDescription("Shows a commands list")
 :SetCooldown(30, 2, true) -- allow 2 calls in 30 seconds
 :SetCallback(function(msg, args)
